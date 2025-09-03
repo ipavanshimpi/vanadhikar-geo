@@ -16,6 +16,7 @@ import {
   Filter
 } from "lucide-react";
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, ResponsiveContainer, Tooltip } from 'recharts';
+import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
 
 const SatelliteMapView = () => {
   const [forestTypeOpen, setForestTypeOpen] = useState(true);
@@ -31,6 +32,17 @@ const SatelliteMapView = () => {
     marol: true,
     kherwadi: true
   });
+
+  // Google Maps API Key
+  const GOOGLE_MAPS_API_KEY = "AIzaSyA9QWy5YEeJ7hgcqIy45jeNsDZ-7R6QD04";
+
+  // Indian forest areas coordinates for markers
+  const forestMarkers = [
+    { id: 1, position: { lat: 21.9052, lng: 77.8901 }, title: "Khermai Village", type: "IFR" },
+    { id: 2, position: { lat: 22.1234, lng: 78.1234 }, title: "Bargaon Village", type: "CFR" },
+    { id: 3, position: { lat: 21.7890, lng: 77.6543 }, title: "Pipariya Village", type: "IFR" },
+    { id: 4, position: { lat: 22.3456, lng: 78.4567 }, title: "Seoni Forest Area", type: "CFR" },
+  ];
 
   // Mock data for charts
   const forestDensityData = [
@@ -218,65 +230,26 @@ const SatelliteMapView = () => {
 
       {/* Main Map Area */}
       <div className="flex-1 relative">
-        {/* Satellite Map Container */}
-        <div className="absolute inset-0 bg-gradient-to-br from-green-900/40 to-green-800/60 overflow-hidden">
-          {/* Mock Satellite Imagery Background */}
-          <div 
-            className="absolute inset-0 opacity-80"
-            style={{
-              backgroundImage: `
-                radial-gradient(circle at 30% 20%, rgba(34, 197, 94, 0.8) 0%, transparent 25%),
-                radial-gradient(circle at 70% 60%, rgba(22, 163, 74, 0.6) 0%, transparent 35%),
-                radial-gradient(circle at 20% 80%, rgba(21, 128, 61, 0.7) 0%, transparent 30%),
-                radial-gradient(circle at 80% 30%, rgba(20, 83, 45, 0.5) 0%, transparent 40%),
-                linear-gradient(135deg, rgba(5, 46, 22, 0.8) 0%, rgba(22, 101, 52, 0.6) 100%)
-              `,
-              backgroundSize: '200px 200px, 150px 150px, 180px 180px, 220px 220px, 100% 100%'
-            }}
-          />
-
-          {/* Village Boundary Overlay */}
-          <svg className="absolute inset-0 w-full h-full">
-            <defs>
-              <pattern id="forestPattern" patternUnits="userSpaceOnUse" width="4" height="4">
-                <rect width="4" height="4" fill="rgba(34, 197, 94, 0.1)" />
-                <circle cx="2" cy="2" r="1" fill="rgba(34, 197, 94, 0.3)" />
-              </pattern>
-            </defs>
-            
-            {/* Village boundaries */}
-            <path
-              d="M 200 150 Q 350 100 500 180 Q 600 280 550 400 Q 400 450 250 380 Q 150 300 200 150 Z"
-              fill="url(#forestPattern)"
-              stroke="#f97316"
-              strokeWidth="3"
-              opacity="0.8"
-            />
-            <path
-              d="M 600 200 Q 750 150 850 250 Q 900 350 800 420 Q 700 450 600 380 Q 550 300 600 200 Z"
-              fill="rgba(168, 85, 247, 0.1)"
-              stroke="#f97316"
-              strokeWidth="3"
-              opacity="0.8"
-            />
-          </svg>
-
-          {/* LULC Areas */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            {/* Forest areas */}
-            <div className="absolute w-32 h-24 bg-green-600/60 rounded-lg -translate-x-20 -translate-y-16"></div>
-            <div className="absolute w-28 h-20 bg-green-700/70 rounded-lg translate-x-12 -translate-y-8"></div>
-            
-            {/* Water bodies */}
-            <div className="absolute w-16 h-12 bg-blue-500/70 rounded-full translate-x-8 translate-y-12"></div>
-            
-            {/* Urban areas */}
-            <div className="absolute w-20 h-16 bg-amber-600/60 rounded -translate-x-16 translate-y-8"></div>
-            
-            {/* Settlement areas */}
-            <div className="absolute w-12 h-8 bg-orange-500/60 rounded translate-x-20 translate-y-4"></div>
+        {/* Google Maps Container */}
+        <APIProvider apiKey={GOOGLE_MAPS_API_KEY}>
+          <div className="absolute inset-0">
+            <Map
+              defaultCenter={{ lat: 22.0, lng: 78.0 }}
+              defaultZoom={8}
+              mapId="forest-rights-map"
+              mapTypeId="satellite"
+              className="w-full h-full"
+            >
+              {forestMarkers.map((marker) => (
+                <Marker
+                  key={marker.id}
+                  position={marker.position}
+                  title={`${marker.title} - ${marker.type}`}
+                />
+              ))}
+            </Map>
           </div>
-        </div>
+        </APIProvider>
 
         {/* Map Controls */}
         <div className="absolute top-4 right-4 flex flex-col space-y-2">
