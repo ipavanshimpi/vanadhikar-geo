@@ -8,89 +8,81 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* FRA Atlas Dark Theme - Professional Government Interface */
+    --background: 210 29% 13%;          /* Deep navy #1a202c */
+    --foreground: 210 40% 98%;          /* Light text */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 211 25% 24%;                /* Charcoal panels #2d3748 */
+    --card-foreground: 210 40% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 211 25% 24%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 145 48% 42%;             /* Forest green #38a169 */
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 211 25% 32%;           /* Darker charcoal */
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 211 25% 20%;
+    --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 42 67% 51%;               /* Amber #d69e2e */
+    --accent-foreground: 210 29% 13%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 79% 57%;           /* Red #e53e3e */
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --success: 145 48% 42%;             /* Forest green for success */
+    --success-foreground: 210 40% 98%;
+
+    --warning: 42 67% 51%;              /* Amber for warnings */
+    --warning-foreground: 210 29% 13%;
+
+    --border: 211 25% 32%;
+    --input: 211 25% 20%;
+    --ring: 145 48% 42%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
+    /* Map and Data Visualization Colors */
+    --chart-1: 145 48% 42%;             /* Forest green */
+    --chart-2: 42 67% 51%;              /* Amber */
+    --chart-3: 0 79% 57%;               /* Red */
+    --chart-4: 220 91% 59%;             /* Blue */
+    --chart-5: 280 65% 60%;             /* Purple */
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Status Colors */
+    --status-approved: 145 48% 42%;
+    --status-pending: 42 67% 51%;
+    --status-rejected: 0 79% 57%;
+    --status-draft: 215 20% 65%;
 
-    --sidebar-primary: 240 5.9% 10%;
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(145 48% 42%), hsl(145 60% 55%));
+    --gradient-success: linear-gradient(135deg, hsl(145 48% 42%), hsl(145 55% 48%));
+    --gradient-warning: linear-gradient(135deg, hsl(42 67% 51%), hsl(42 75% 58%));
+    --gradient-danger: linear-gradient(135deg, hsl(0 79% 57%), hsl(0 85% 63%));
 
-    --sidebar-primary-foreground: 0 0% 98%;
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(210 29% 8% / 0.3);
+    --shadow-md: 0 4px 6px -1px hsl(210 29% 8% / 0.4);
+    --shadow-lg: 0 10px 15px -3px hsl(210 29% 8% / 0.5);
+    --shadow-glow: 0 0 20px hsl(145 48% 42% / 0.3);
 
-    --sidebar-accent: 240 4.8% 95.9%;
+    /* Sidebar */
+    --sidebar-background: 211 25% 18%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 145 48% 42%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 211 25% 24%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 211 25% 32%;
+    --sidebar-ring: 145 48% 42%;
 
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Font families */
+    --font-sans: 'Inter', 'system-ui', sans-serif;
+    --font-heading: 'Poppins', 'Inter', sans-serif;
   }
 }
 
@@ -100,6 +92,118 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar for dark theme */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--accent));
+  }
+}
+
+@layer components {
+  /* Professional status badges */
+  .status-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .status-approved {
+    @apply bg-success/10 text-success border border-success/20;
+  }
+
+  .status-pending {
+    @apply bg-warning/10 text-warning border border-warning/20;
+  }
+
+  .status-rejected {
+    @apply bg-destructive/10 text-destructive border border-destructive/20;
+  }
+
+  /* Map container styles */
+  .map-container {
+    @apply relative overflow-hidden rounded-lg;
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Data cards with hover effects */
+  .data-card {
+    @apply bg-card border border-border rounded-lg p-6 transition-all duration-200;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .data-card:hover {
+    @apply border-primary/20;
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+  }
+
+  /* Professional button variants */
+  .btn-government {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-4 py-2 rounded-md transition-colors;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .btn-success {
+    @apply bg-success text-success-foreground hover:bg-success/90 font-medium px-4 py-2 rounded-md transition-colors;
+  }
+
+  .btn-warning {
+    @apply bg-warning text-warning-foreground hover:bg-warning/90 font-medium px-4 py-2 rounded-md transition-colors;
+  }
+
+  /* Typography hierarchy */
+  .heading-1 {
+    @apply text-4xl font-bold tracking-tight font-heading;
+  }
+
+  .heading-2 {
+    @apply text-3xl font-bold tracking-tight font-heading;
+  }
+
+  .heading-3 {
+    @apply text-2xl font-semibold tracking-tight font-heading;
+  }
+
+  .heading-4 {
+    @apply text-xl font-semibold font-heading;
+  }
+
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 }
