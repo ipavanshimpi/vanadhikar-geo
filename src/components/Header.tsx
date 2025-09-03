@@ -1,6 +1,7 @@
 import { Bell, Search, User, ChevronDown, TreePine } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { NavLink, useLocation } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,6 +13,8 @@ import {
 import { Badge } from "@/components/ui/badge";
 
 const Header = () => {
+  const location = useLocation();
+  
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
       <div className="container flex h-16 items-center px-4">
@@ -26,12 +29,28 @@ const Header = () => {
 
         {/* Navigation Menu */}
         <nav className="hidden md:flex items-center space-x-6 ml-8">
-          <Button variant="ghost" className="text-primary bg-primary/10 hover:bg-primary/20">
-            Dashboard
-          </Button>
-          <Button variant="ghost" className="hover:text-primary">
-            Claims
-          </Button>
+          <NavLink to="/">
+            <Button 
+              variant="ghost" 
+              className={location.pathname === '/' ? 
+                "text-primary bg-primary/10 hover:bg-primary/20" : 
+                "hover:text-primary"
+              }
+            >
+              Dashboard
+            </Button>
+          </NavLink>
+          <NavLink to="/claims">
+            <Button 
+              variant="ghost" 
+              className={location.pathname === '/claims' ? 
+                "text-primary bg-primary/10 hover:bg-primary/20" : 
+                "hover:text-primary"
+              }
+            >
+              Claims
+            </Button>
+          </NavLink>
           <Button variant="ghost" className="hover:text-primary">
             Atlas
           </Button>
