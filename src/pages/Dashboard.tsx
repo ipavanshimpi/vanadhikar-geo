@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
-import MapView from "@/components/MapView";
+import SatelliteMapView from "@/components/SatelliteMapView";
 import StatsPanel from "@/components/StatsPanel";
 
 const Dashboard = () => {
@@ -10,7 +10,7 @@ const Dashboard = () => {
       <div className="flex">
         <Sidebar />
         <main className="flex-1 flex">
-          <MapView />
+          <SatelliteMapView />
           <StatsPanel />
         </main>
       </div>
