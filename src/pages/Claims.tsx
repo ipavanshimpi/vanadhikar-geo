@@ -4,6 +4,7 @@ import { ClaimsFilters } from '../components/claims/ClaimsFilters';
 import { ClaimPreview } from '../components/claims/ClaimPreview';
 import { ClaimsHeader } from '../components/claims/ClaimsHeader';
 import { sampleClaims, type Claim } from '../data/sampleClaims';
+import Header from '../components/Header';
 
 const Claims = () => {
   const [selectedClaim, setSelectedClaim] = useState<Claim | null>(null);
@@ -49,6 +50,7 @@ const Claims = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Header />
       <ClaimsHeader 
         selectedClaims={selectedClaims}
         totalClaims={filteredClaims.length}
