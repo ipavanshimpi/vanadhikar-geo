@@ -51,9 +51,17 @@ const Header = () => {
               Claims
             </Button>
           </NavLink>
-          <Button variant="ghost" className="hover:text-primary">
-            Atlas
-          </Button>
+          <NavLink to="/atlas">
+            <Button 
+              variant="ghost" 
+              className={location.pathname === '/atlas' ? 
+                "text-primary bg-primary/10 hover:bg-primary/20" : 
+                "hover:text-primary"
+              }
+            >
+              Atlas
+            </Button>
+          </NavLink>
           <Button variant="ghost" className="hover:text-primary">
             Analytics
           </Button>
