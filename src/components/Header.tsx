@@ -87,28 +87,6 @@ const Header = () => {
               Settings
             </Button>
           </NavLink>
-          <NavLink to="/profile">
-            <Button 
-              variant="ghost" 
-              className={location.pathname === '/profile' ? 
-                "text-primary bg-primary/10 hover:bg-primary/20" : 
-                "hover:text-primary"
-              }
-            >
-              Profile
-            </Button>
-          </NavLink>
-          <NavLink to="/help">
-            <Button 
-              variant="ghost" 
-              className={location.pathname === '/help' ? 
-                "text-primary bg-primary/10 hover:bg-primary/20" : 
-                "hover:text-primary"
-              }
-            >
-              Help
-            </Button>
-          </NavLink>
         </nav>
 
         {/* Search Bar */}
