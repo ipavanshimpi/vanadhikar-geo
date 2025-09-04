@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import React from "react";
 import { isAuthenticated } from "./utils/auth";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -21,65 +22,81 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          {/* Default route - Login page */}
-          <Route path="/" element={
-            isAuthenticated() ? <Navigate to="/dashboard" replace /> : <Login />
-          } />
-          
-          {/* Public routes */}
-          <Route path="/login" element={
-            isAuthenticated() ? <Navigate to="/dashboard" replace /> : <Login />
-          } />
-          
-          {/* Protected routes */}
-          <Route path="/dashboard" element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          } />
-          <Route path="/claims" element={
-            <ProtectedRoute>
-              <Claims />
-            </ProtectedRoute>
-          } />
-          <Route path="/atlas" element={
-            <ProtectedRoute>
-              <Atlas />
-            </ProtectedRoute>
-          } />
-          <Route path="/analytics" element={
-            <ProtectedRoute>
-              <Analytics />
-            </ProtectedRoute>
-          } />
-          <Route path="/settings" element={
-            <ProtectedRoute>
-              <Settings />
-            </ProtectedRoute>
-          } />
-          <Route path="/profile" element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          } />
-          <Route path="/help" element={
-            <ProtectedRoute>
-              <HelpCenter />
-            </ProtectedRoute>
-          } />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  // Clear any existing auth data on app load to ensure clean state
+  React.useEffect(() => {
+    // Only clear if there's corrupted data, not valid user data
+    const userData = localStorage.getItem("fra-user");
+    if (userData) {
+      try {
+        JSON.parse(userData);
+      } catch (e) {
+        // Clear corrupted data
+        localStorage.removeItem("fra-user");
+      }
+    }
+  }, []);
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            {/* Default route - Login page */}
+            <Route path="/" element={
+              isAuthenticated() ? <Navigate to="/dashboard" replace /> : <Login />
+            } />
+            
+            {/* Public routes */}
+            <Route path="/login" element={
+              isAuthenticated() ? <Navigate to="/dashboard" replace /> : <Login />
+            } />
+            
+            {/* Protected routes */}
+            <Route path="/dashboard" element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            } />
+            <Route path="/claims" element={
+              <ProtectedRoute>
+                <Claims />
+              </ProtectedRoute>
+            } />
+            <Route path="/atlas" element={
+              <ProtectedRoute>
+                <Atlas />
+              </ProtectedRoute>
+            } />
+            <Route path="/analytics" element={
+              <ProtectedRoute>
+                <Analytics />
+              </ProtectedRoute>
+            } />
+            <Route path="/settings" element={
+              <ProtectedRoute>
+                <Settings />
+              </ProtectedRoute>
+            } />
+            <Route path="/profile" element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            } />
+            <Route path="/help" element={
+              <ProtectedRoute>
+                <HelpCenter />
+              </ProtectedRoute>
+            } />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;

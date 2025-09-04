@@ -1314,8 +1314,300 @@ const Settings = () => {
               </div>
             )}
 
+            {/* Analytics & Reporting Settings */}
+            {activeSection === "analytics" && (
+              <div className="space-y-6">
+                <h2 className="text-xl font-semibold">Analytics & Reporting</h2>
+
+                <div className="grid gap-6">
+                  {/* Dashboard Metrics Configuration */}
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Dashboard Metrics</CardTitle>
+                      <CardDescription>Configure which metrics are displayed on dashboards</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div className="grid grid-cols-2 gap-4">
+                        {[
+                          { metric: "Total Claims", description: "Count of all FRA claims", enabled: true },
+                          { metric: "Approval Rate", description: "Percentage of approved claims", enabled: true },
+                          { metric: "Processing Time", description: "Average claim processing duration", enabled: true },
+                          { metric: "Geographic Distribution", description: "Claims by district/state", enabled: false },
+                          { metric: "Document Quality Score", description: "AI-based document quality metrics", enabled: false },
+                          { metric: "User Activity", description: "Login frequency and usage patterns", enabled: true }
+                        ].map((item, index) => (
+                          <div key={index} className="flex items-center justify-between p-3 border rounded">
+                            <div>
+                              <div className="font-medium">{item.metric}</div>
+                              <div className="text-sm text-muted-foreground">{item.description}</div>
+                            </div>
+                            <Switch checked={item.enabled} />
+                          </div>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <div className="grid gap-6 md:grid-cols-2">
+                    {/* Report Generation */}
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Automated Reports</CardTitle>
+                        <CardDescription>Schedule and configure automated reports</CardDescription>
+                      </CardHeader>
+                      <CardContent className="space-y-4">
+                        <div>
+                          <Label htmlFor="reportFreq">Report Frequency</Label>
+                          <Select>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Monthly" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="daily">Daily</SelectItem>
+                              <SelectItem value="weekly">Weekly</SelectItem>
+                              <SelectItem value="monthly">Monthly</SelectItem>
+                              <SelectItem value="quarterly">Quarterly</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+
+                        <div>
+                          <Label>Report Types</Label>
+                          <div className="space-y-2 mt-2">
+                            {[
+                              "Claims Summary Report",
+                              "Performance Analytics",
+                              "Geographic Analysis", 
+                              "Document Processing Stats",
+                              "User Activity Report"
+                            ].map((report) => (
+                              <div key={report} className="flex items-center justify-between">
+                                <span className="text-sm">{report}</span>
+                                <Switch />
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="space-y-2">
+                          <Label htmlFor="recipients">Email Recipients</Label>
+                          <Textarea 
+                            id="recipients"
+                            placeholder="admin@tribal.gov.in, director@forest.gov.in"
+                            className="min-h-[80px]"
+                          />
+                        </div>
+
+                        <Button className="w-full">
+                          <Mail className="h-4 w-4 mr-2" />
+                          Save Report Settings
+                        </Button>
+                      </CardContent>
+                    </Card>
+
+                    {/* Data Export Configuration */}
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Data Export</CardTitle>
+                        <CardDescription>Configure data export formats and schedules</CardDescription>
+                      </CardHeader>
+                      <CardContent className="space-y-4">
+                        <div>
+                          <Label>Export Formats</Label>
+                          <div className="space-y-2 mt-2">
+                            {[
+                              { format: "Excel (.xlsx)", enabled: true },
+                              { format: "CSV (.csv)", enabled: true },
+                              { format: "PDF Report", enabled: false },
+                              { format: "JSON Data", enabled: false },
+                              { format: "GeoJSON (Spatial)", enabled: true }
+                            ].map((item, index) => (
+                              <div key={index} className="flex items-center justify-between">
+                                <span className="text-sm">{item.format}</span>
+                                <Switch checked={item.enabled} />
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div>
+                          <Label htmlFor="exportSchedule">Auto Export Schedule</Label>
+                          <Select>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Disabled" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="disabled">Disabled</SelectItem>
+                              <SelectItem value="daily">Daily</SelectItem>
+                              <SelectItem value="weekly">Weekly</SelectItem>
+                              <SelectItem value="monthly">Monthly</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+
+                        <div className="flex gap-2">
+                          <Button variant="outline" className="flex-1">
+                            <Download className="h-4 w-4 mr-2" />
+                            Export Now
+                          </Button>
+                          <Button variant="outline" className="flex-1">
+                            <Eye className="h-4 w-4 mr-2" />
+                            Preview
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  {/* Performance Analytics */}
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Performance Analytics</CardTitle>
+                      <CardDescription>Configure performance tracking and KPI monitoring</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {/* KPI Targets */}
+                        <div className="space-y-4">
+                          <h4 className="font-medium">KPI Targets</h4>
+                          {[
+                            { kpi: "Claim Processing Time", target: "30 days", current: "25 days" },
+                            { kpi: "Document Accuracy", target: "95%", current: "92%" },
+                            { kpi: "User Response Rate", target: "80%", current: "85%" }
+                          ].map((item, index) => (
+                            <div key={index} className="p-3 bg-muted/50 rounded">
+                              <div className="text-sm font-medium">{item.kpi}</div>
+                              <div className="flex justify-between text-xs mt-1">
+                                <span>Target: {item.target}</span>
+                                <span className="font-medium">Current: {item.current}</span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Alert Configuration */}
+                        <div className="space-y-4">
+                          <h4 className="font-medium">Performance Alerts</h4>
+                          {[
+                            { alert: "Claims Backlog", threshold: "> 500 pending", enabled: true },
+                            { alert: "Processing Delays", threshold: "> 45 days", enabled: true },
+                            { alert: "System Downtime", threshold: "> 5 minutes", enabled: false }
+                          ].map((item, index) => (
+                            <div key={index} className="flex items-center justify-between p-2 border rounded">
+                              <div>
+                                <div className="text-sm font-medium">{item.alert}</div>
+                                <div className="text-xs text-muted-foreground">{item.threshold}</div>
+                              </div>
+                              <Switch checked={item.enabled} />
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Data Retention */}
+                        <div className="space-y-4">
+                          <h4 className="font-medium">Data Retention</h4>
+                          <div className="space-y-3">
+                            <div>
+                              <Label htmlFor="analyticsRetention">Analytics Data</Label>
+                              <Select>
+                                <SelectTrigger>
+                                  <SelectValue placeholder="2 years" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="1year">1 year</SelectItem>
+                                  <SelectItem value="2years">2 years</SelectItem>
+                                  <SelectItem value="5years">5 years</SelectItem>
+                                  <SelectItem value="permanent">Permanent</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+                            <div>
+                              <Label htmlFor="logRetention">Activity Logs</Label>
+                              <Select>
+                                <SelectTrigger>
+                                  <SelectValue placeholder="6 months" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="3months">3 months</SelectItem>
+                                  <SelectItem value="6months">6 months</SelectItem>
+                                  <SelectItem value="1year">1 year</SelectItem>
+                                  <SelectItem value="2years">2 years</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Custom Dashboards */}
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Custom Dashboards</CardTitle>
+                      <CardDescription>Create and manage custom dashboard views</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-center">
+                          <Label>Saved Dashboards</Label>
+                          <Button size="sm">
+                            <Plus className="h-4 w-4 mr-2" />
+                            Create Dashboard
+                          </Button>
+                        </div>
+
+                        <Table>
+                          <TableHeader>
+                            <TableRow>
+                              <TableHead>Dashboard Name</TableHead>
+                              <TableHead>Created By</TableHead>
+                              <TableHead>Last Modified</TableHead>
+                              <TableHead>Shared</TableHead>
+                              <TableHead>Actions</TableHead>
+                            </TableRow>
+                          </TableHeader>
+                          <TableBody>
+                            {[
+                              { name: "District Overview", creator: "Rajesh Kumar", modified: "2 days ago", shared: true },
+                              { name: "Claims Performance", creator: "Anita Devi", modified: "1 week ago", shared: false },
+                              { name: "Monthly Summary", creator: "System", modified: "3 days ago", shared: true }
+                            ].map((dashboard, index) => (
+                              <TableRow key={index}>
+                                <TableCell className="font-medium">{dashboard.name}</TableCell>
+                                <TableCell>{dashboard.creator}</TableCell>
+                                <TableCell>{dashboard.modified}</TableCell>
+                                <TableCell>
+                                  <Badge variant={dashboard.shared ? "default" : "secondary"}>
+                                    {dashboard.shared ? "Shared" : "Private"}
+                                  </Badge>
+                                </TableCell>
+                                <TableCell>
+                                  <div className="flex gap-2">
+                                    <Button size="sm" variant="outline">
+                                      <Edit className="h-3 w-3" />
+                                    </Button>
+                                    <Button size="sm" variant="outline">
+                                      <Eye className="h-3 w-3" />
+                                    </Button>
+                                    <Button size="sm" variant="outline">
+                                      <Trash2 className="h-3 w-3" />
+                                    </Button>
+                                  </div>
+                                </TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+            )}
+
             {/* Show placeholder for remaining sections */}
-            {!["general", "map", "ai", "security", "users", "integration", "mobile", "system"].includes(activeSection) && (
+            {!["general", "map", "ai", "security", "users", "integration", "mobile", "system", "analytics"].includes(activeSection) && (
               <div className="text-center py-12">
                 <h2 className="text-xl font-semibold mb-2">
                   {settingsSections.find(s => s.id === activeSection)?.label}
