@@ -7,6 +7,7 @@ import Dashboard from "./pages/Dashboard";
 import Claims from "./pages/Claims";
 import Atlas from "./pages/Atlas";
 import Analytics from "./pages/Analytics";
+import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/claims" element={<Claims />} />
           <Route path="/atlas" element={<Atlas />} />
           <Route path="/analytics" element={<Analytics />} />
+          <Route path="/settings" element={<Settings />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
