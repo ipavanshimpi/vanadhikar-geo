@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { getAuthenticatedUser, logout } from "@/utils/auth";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,6 +18,12 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [isNotificationsSidebarOpen, setIsNotificationsSidebarOpen] = useState(false);
+  const user = getAuthenticatedUser();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
   
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
@@ -32,10 +39,10 @@ const Header = () => {
 
         {/* Navigation Menu */}
         <nav className="hidden md:flex items-center space-x-6 ml-8">
-          <NavLink to="/">
+          <NavLink to="/dashboard">
             <Button 
               variant="ghost" 
-              className={location.pathname === '/' ? 
+              className={location.pathname === '/dashboard' ? 
                 "text-primary bg-primary/10 hover:bg-primary/20" : 
                 "hover:text-primary"
               }
@@ -123,8 +130,8 @@ const Header = () => {
                   <User className="h-4 w-4 text-primary" />
                 </div>
                 <div className="hidden md:block text-left">
-                  <div className="text-sm font-medium">श्री राजेश शर्मा</div>
-                  <div className="text-xs text-muted-foreground">Government Official</div>
+                  <div className="text-sm font-medium">{user?.name}</div>
+                  <div className="text-xs text-muted-foreground">{user?.department}</div>
                 </div>
                 <ChevronDown className="h-4 w-4" />
               </Button>
@@ -145,7 +152,7 @@ const Header = () => {
                 Help Center
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="text-destructive cursor-pointer">
+              <DropdownMenuItem onClick={handleLogout} className="text-destructive cursor-pointer">
                 <LogOut className="mr-2 h-4 w-4" />
                 Sign out
               </DropdownMenuItem>
