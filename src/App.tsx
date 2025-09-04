@@ -28,15 +28,17 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
+          {/* Default route - Login page */}
+          <Route path="/" element={
+            isAuthenticated() ? <Navigate to="/dashboard" replace /> : <Login />
+          } />
+          
           {/* Public routes */}
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={
+            isAuthenticated() ? <Navigate to="/dashboard" replace /> : <Login />
+          } />
           
           {/* Protected routes */}
-          <Route path="/" element={
-            <ProtectedRoute>
-              <Navigate to="/dashboard" replace />
-            </ProtectedRoute>
-          } />
           <Route path="/dashboard" element={
             <ProtectedRoute>
               <Dashboard />
