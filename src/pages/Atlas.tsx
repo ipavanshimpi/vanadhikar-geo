@@ -574,7 +574,7 @@ const Atlas = () => {
                         <div className="flex items-center justify-between mb-2">
                           <div className="flex items-center space-x-2">
                             <div className="w-3 h-3 bg-yellow-500 rounded"></div>
-                            <span className="font-medium text-sm text-yellow-700">Agricultural Land</span>
+                            <span className="font-medium text-sm text-black">Agricultural Land</span>
                           </div>
                           <Badge variant="secondary">{analysisResults.agricultural.confidence}%</Badge>
                         </div>
@@ -588,7 +588,7 @@ const Atlas = () => {
                         <div className="flex items-center justify-between mb-2">
                           <div className="flex items-center space-x-2">
                             <TreePine className="h-4 w-4 text-green-600" />
-                            <span className="font-medium text-sm text-green-700">Forest Cover</span>
+                            <span className="font-medium text-sm text-black">Forest Cover</span>
                           </div>
                           <Badge variant="secondary">{analysisResults.forest.confidence}%</Badge>
                         </div>
@@ -602,7 +602,7 @@ const Atlas = () => {
                         <div className="flex items-center justify-between mb-2">
                           <div className="flex items-center space-x-2">
                             <Droplets className="h-4 w-4 text-blue-600" />
-                            <span className="font-medium text-sm text-blue-700">Water Bodies</span>
+                            <span className="font-medium text-sm text-black">Water Bodies</span>
                           </div>
                           <Badge variant="secondary">{analysisResults.water.confidence}%</Badge>
                         </div>
@@ -616,7 +616,7 @@ const Atlas = () => {
                         <div className="flex items-center justify-between mb-2">
                           <div className="flex items-center space-x-2">
                             <Home className="h-4 w-4 text-gray-600" />
-                            <span className="font-medium text-sm text-gray-700">Built-up Area</span>
+                            <span className="font-medium text-sm text-black">Built-up Area</span>
                           </div>
                           <Badge variant="secondary">{analysisResults.builtup.confidence}%</Badge>
                         </div>
