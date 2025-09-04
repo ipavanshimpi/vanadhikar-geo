@@ -1,4 +1,4 @@
-import { Bell, Search, User, ChevronDown, TreePine } from "lucide-react";
+import { Bell, Search, User, ChevronDown, TreePine, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { NavLink, useLocation } from "react-router-dom";
@@ -82,6 +82,28 @@ const Header = () => {
               }
             >
               Settings
+            </Button>
+          </NavLink>
+          <NavLink to="/profile">
+            <Button 
+              variant="ghost" 
+              className={location.pathname === '/profile' ? 
+                "text-primary bg-primary/10 hover:bg-primary/20" : 
+                "hover:text-primary"
+              }
+            >
+              Profile
+            </Button>
+          </NavLink>
+          <NavLink to="/help">
+            <Button 
+              variant="ghost" 
+              className={location.pathname === '/help' ? 
+                "text-primary bg-primary/10 hover:bg-primary/20" : 
+                "hover:text-primary"
+              }
+            >
+              Help
             </Button>
           </NavLink>
         </nav>
