@@ -27,6 +27,7 @@ import {
 } from "lucide-react";
 
 const Settings = () => {
+  console.log('Settings component loaded'); // Force rebuild
   const [activeSection, setActiveSection] = useState("general");
   const { register, handleSubmit, watch, setValue } = useForm();
 
