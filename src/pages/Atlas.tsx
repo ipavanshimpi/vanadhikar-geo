@@ -578,7 +578,7 @@ const Atlas = () => {
                           </div>
                           <Badge variant="secondary">{analysisResults.agricultural.confidence}%</Badge>
                         </div>
-                        <div className="text-2xl font-bold">{analysisResults.agricultural.area} ha</div>
+                        <div className="text-2xl font-bold text-black">{analysisResults.agricultural.area} ha</div>
                         <div className="text-sm text-muted-foreground">{analysisResults.agricultural.percentage}% of total area</div>
                         <div className="text-xs mt-1">Active Crops: 180.1 ha | Fallow: 65.2 ha</div>
                       </div>
